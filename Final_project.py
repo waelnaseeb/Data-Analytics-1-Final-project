@@ -24,7 +24,7 @@ with open("retail_data.csv.txt", "r") as f: #read the CSV file
     print(f'The total quantity the customer {customer_id} purchased: {sum(cust_total_qty)}\nThe total cost of items the customer  purchased: {round(sum(cust_total_mny),2)} euro\nThe customer purchased {len(cust_purchased_products)} unique products so far\nAmoung items sold to the customer {len(wood_sales)} wooden items with a total cost of: {round(sum(wood_sales),2)} euro')
 
 
-def sales_analysis(): #sales analysis function
+  def sales_analysis(): #sales analysis function
     cust_spend = {} #a dictionary contains customerID (key) and total cost of his purchased items (value) 
     product_sale = {} #a dictionary contains stock code (key) and total quantity sold of this item(value)
     
@@ -45,11 +45,18 @@ def sales_analysis(): #sales analysis function
     print(f"We have {len(cust_spend)} customers in total\nWe have {len(product_sale)} products in total")
     print(f"The best customer: {best_customer} with a total amount of purchases {round(best_customer_amount,2)} euro\nBest selling product: {best_product} with a total quantity of {best_product_qty} units sold")
     
-    #Plotting customers best customers with total amount of purchases > 2000
+    #Plotting best customers with total amount of purchases > 2000
     plt.bar(x=[i for i in cust_spend.keys() if cust_spend[i] > 2000], height=[i for i in cust_spend.values() if i > 2000], width=0.5, align='center')
     # Add some text for x,y axes 
     plt.ylabel("Customer's total cost of purchases €")
     plt.xlabel('CustomerID of customers with total amount of purchases > 2000 €')
+    plt.show()
+    
+    #Plotting the best selling products with total sold quantity > 1000 units
+    plt.bar(x=[i for i in product_sale.keys() if product_sale[i] > 1000], height=[i for i in product_sale.values() if i > 1000], width=0.5, align='center')
+    # Add some text for x,y axes 
+    plt.ylabel("Amount of sold items of the product")
+    plt.xlabel('Stock Code of the best selling products with total sold quantity > 1000 units')
     plt.show()
 
 #cust_stats() #call the function
